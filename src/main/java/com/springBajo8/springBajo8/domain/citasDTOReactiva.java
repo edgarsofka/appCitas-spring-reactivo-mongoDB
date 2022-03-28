@@ -29,6 +29,8 @@ public class citasDTOReactiva {
 
     private String estadoReservaCita;
 
+    private boolean estado;
+
     public String getId() {
         return id;
     }
@@ -99,6 +101,14 @@ public class citasDTOReactiva {
 
     public void setEstadoReservaCita(String estadoReservaCita) {
         this.estadoReservaCita = estadoReservaCita;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     //private Date sendedDate = new Date();

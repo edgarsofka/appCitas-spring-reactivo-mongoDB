@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @Service
 public class citasReactivaServiceImpl implements IcitasReactivaService {
 
@@ -57,4 +59,11 @@ public class citasReactivaServiceImpl implements IcitasReactivaService {
     public Mono<citasDTOReactiva> findById(String id) {
         return this.IcitasReactivaRepository.findById(id);
     }
+
+    @Override
+    public Flux<citasDTOReactiva> findByFechaYHora(LocalDate fecha, String hora) {
+        return this.IcitasReactivaRepository.findByFechaYHora(fecha, hora);
+    }
+
+
 }

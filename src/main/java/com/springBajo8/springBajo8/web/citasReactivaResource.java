@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @RestController
 public class citasReactivaResource {
 
@@ -48,4 +50,17 @@ public class citasReactivaResource {
         return this.icitasReactivaService.findAll();
     }
 
+    @GetMapping("/citasReactivas/{fecha}/{hora}")
+    private Flux<citasDTOReactiva> findByFechaYHora(@PathVariable(value = "fecha") String fecha, @PathVariable(value = "hora") String hora){
+        return this.icitasReactivaService.findByFechaYHora(LocalDate.parse(fecha), hora);
+    }
+
+    @PutMapping("/citasReactivas/cancelar/{id}")
+    private Mono<ResponseEntity<citasDTOReactiva>> cancelar(@PathVariable("id") String id) {
+        return this.icitasReactivaService.findById(id).flatMap(citasDTOReactiva -> {
+            citasDTOReactiva.setEstado(false);
+            citasDTOReactiva.setEstadoReservaCita("Cancelada");
+            return this.icitasReactivaService.save(citasDTOReactiva);
+        }).flatMap(citasDTOReactiva -> Mono.just(ResponseEntity.ok(citasDTOReactiva))).switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
 }
