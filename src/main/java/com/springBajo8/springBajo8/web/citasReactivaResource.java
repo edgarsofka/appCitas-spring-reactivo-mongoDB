@@ -48,4 +48,9 @@ public class citasReactivaResource {
         return this.icitasReactivaService.findAll();
     }
 
+    @GetMapping(value = "/citasReactivas")
+    private Flux<citasDTOReactiva> findAllaa() {
+        return this.icitasReactivaService.findAll();
+    }
+
 }
