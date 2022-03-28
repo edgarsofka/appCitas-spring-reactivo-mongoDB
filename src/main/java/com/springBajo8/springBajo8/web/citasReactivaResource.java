@@ -48,9 +48,12 @@ public class citasReactivaResource {
         return this.icitasReactivaService.findAll();
     }
 
-    @GetMapping(value = "/citasReactivas")
-    private Flux<citasDTOReactiva> findAllaa() {
-        return this.icitasReactivaService.findAll();
+    //Nuevos metodos
+    // cancelar una cita de formal logica
+    @PutMapping(value = "/citasReactivas/{id}/cancelarCita")
+    private Mono<citasDTOReactiva> updateCancelarCita(@PathVariable("id") String id) {
+        return this.icitasReactivaService.updateCancelarCita(id);
     }
+
 
 }
