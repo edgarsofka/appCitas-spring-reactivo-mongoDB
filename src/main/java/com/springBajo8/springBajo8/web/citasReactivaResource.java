@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @RestController
 public class citasReactivaResource {
 
@@ -49,11 +51,22 @@ public class citasReactivaResource {
     }
 
     //Nuevos metodos
-    // cancelar una cita de formal logica
+    // cancelar una cita de forma logica
     @PutMapping(value = "/citasReactivas/{id}/cancelarCita")
     private Mono<citasDTOReactiva> updateCancelarCita(@PathVariable("id") String id) {
         return this.icitasReactivaService.updateCancelarCita(id);
     }
+
+    //consultar cita por fecha y hora
+    @GetMapping(value = "/citasReactivas/{fechaReservaCita}/{horaReservaCita}/consultarByFechaAndHora")
+    private Flux<citasDTOReactiva> findByFechaYHora(
+            @PathVariable("fechaReservaCita") String fecha,
+            @PathVariable("horaReservaCita") String hora) {
+        System.out.println(fecha);
+        return this.icitasReactivaService.findByFechaYHora(fecha, hora);
+    }
+
+
 
 
 }
