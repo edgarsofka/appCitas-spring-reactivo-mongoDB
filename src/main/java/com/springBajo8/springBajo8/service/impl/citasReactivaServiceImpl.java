@@ -75,4 +75,16 @@ public class citasReactivaServiceImpl implements IcitasReactivaService {
                 .filter(cita -> Objects.equals(cita.getHoraReservaCita(), hora));
     }
 
+    @Override
+    public Mono<citasDTOReactiva> findByNombreMedico(String nombre, String apellidos) {
+        return Objects.nonNull(nombre) ?
+                this.IcitasReactivaRepository.findByNombreMedico(nombre)
+                        .filter(cita -> Objects.equals(cita.getApellidosMedico(), apellidos))
+                        .next()
+                        .switchIfEmpty(Mono.empty()) :
+                this.IcitasReactivaRepository.findAll()
+                        .filter(cita -> Objects.equals(cita.getApellidosMedico(), apellidos))
+                        .next()
+                        .switchIfEmpty(Mono.empty());
+    }
 }

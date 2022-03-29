@@ -23,4 +23,6 @@ public interface IcitasReactivaService {
     Mono<citasDTOReactiva> updateCancelarCita(String id);
 
     Flux<citasDTOReactiva> findByFechaYHora(String fecha, String hora);
+
+    Mono<citasDTOReactiva> findByNombreMedico(String nombre, String apellidos);
 }

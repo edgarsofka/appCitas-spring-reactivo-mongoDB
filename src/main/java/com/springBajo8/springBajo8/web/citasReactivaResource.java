@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.websocket.server.PathParam;
 import java.time.LocalDate;
 
 @RestController
@@ -66,7 +67,13 @@ public class citasReactivaResource {
         return this.icitasReactivaService.findByFechaYHora(fecha, hora);
     }
 
-
-
+    //cita por nombre y apellido de medico /citasReactivas/nombreMedico/?nombre=<nombre>&apellidos=<apellido>
+    @GetMapping("/citasReactivas/nombreMedico")
+    private Mono<citasDTOReactiva> findByNombreMedico(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String apellidos){
+        System.out.println(nombre);
+        return this.icitasReactivaService.findByNombreMedico(nombre, apellidos);
+    }
 
 }
