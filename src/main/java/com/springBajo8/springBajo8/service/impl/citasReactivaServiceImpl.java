@@ -38,7 +38,7 @@ public class citasReactivaServiceImpl implements IcitasReactivaService {
                 .findById(id)
                 .flatMap(p -> {
                     citasDTOReactiva medico = new citasDTOReactiva();
-                    medico.setPadecimiento(p.getNombreMedico());
+                    medico.setNombreMedico(p.getNombreMedico());
                     medico.setApellidosMedico(p.getApellidosMedico());
                     return Mono.just(medico);
                 });
