@@ -1,6 +1,7 @@
 package com.springBajo8.springBajo8.web;
 
 
+import com.springBajo8.springBajo8.domain.DiagnosticoDTO;
 import com.springBajo8.springBajo8.domain.citasDTOReactiva;
 import com.springBajo8.springBajo8.service.IcitasReactivaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,12 @@ public class citasReactivaResource {
             @RequestParam(required = false) String apellidos){
         System.out.println(nombre);
         return this.icitasReactivaService.findByNombreMedico(nombre, apellidos);
+    }
+
+    //padecimientos y tratamientos de paciente
+    @GetMapping("/citasReactivas/padecimientos/{idPaciente}/byIdPaciente")
+    private Flux<DiagnosticoDTO> findPadecimientosByidPaciente(@PathVariable("idPaciente") String idPaciente) {
+        return this.icitasReactivaService.findPadecimientosByIdPaciente(idPaciente);
     }
 
 }
