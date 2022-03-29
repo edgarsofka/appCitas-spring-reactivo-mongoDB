@@ -51,6 +51,10 @@ public class citasDTOReactiva {
 
     private String tratamiento;
 
+    private String padecimientos;
+
+    private String Tratamientos;
+
     public String getId() {
         return id;
     }
@@ -129,6 +133,22 @@ public class citasDTOReactiva {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public String getPadecimientos() {
+        return padecimientos;
+    }
+
+    public void setPadecimientos(String padecimientos) {
+        this.padecimientos = padecimientos;
+    }
+
+    public String getTratamientos() {
+        return Tratamientos;
+    }
+
+    public void setTratamientos(String tratamientos) {
+        Tratamientos = tratamientos;
     }
 
     //private Date sendedDate = new Date();
