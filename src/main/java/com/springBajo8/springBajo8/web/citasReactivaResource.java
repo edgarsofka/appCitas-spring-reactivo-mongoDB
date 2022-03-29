@@ -43,6 +43,17 @@ public class citasReactivaResource {
         return this.icitasReactivaService.findByIdPaciente(idPaciente);
     }
 
+
+    @GetMapping("/citasReactivas/{id}/byMedico")
+    private Mono<citasDTOReactiva> findMedico(@PathVariable("id") String id){
+        return  this.icitasReactivaService.findMedico(id);
+    }
+
+    @GetMapping("/citasReactivas/{idPaciente}/byPadecimiento")
+    private Flux<citasDTOReactiva> findPadecimiento(@PathVariable("idPaciente") String idPaciente){
+        return  this.icitasReactivaService.findPadecimiento(idPaciente);
+    }
+
     @GetMapping(value = "/citasReactivas")
     private Flux<citasDTOReactiva> findAll() {
         return this.icitasReactivaService.findAll();

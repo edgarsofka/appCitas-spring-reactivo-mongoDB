@@ -24,6 +24,10 @@ public interface IcitasReactivaService {
 
     Flux<citasDTOReactiva> findByHora(String hora);
 
+    Mono<citasDTOReactiva> findMedico(String id);
+
+    Flux<citasDTOReactiva> findPadecimiento(String idPaciente);
+
 
 
 }

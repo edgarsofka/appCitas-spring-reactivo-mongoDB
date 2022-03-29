@@ -31,6 +31,26 @@ public class citasDTOReactiva {
 
     private boolean estado;
 
+    private String padecimiento;
+
+    public String getPadecimiento() {
+        return padecimiento;
+    }
+
+    public void setPadecimiento(String padecimiento) {
+        this.padecimiento = padecimiento;
+    }
+
+    public String getTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(String tratamiento) {
+        this.tratamiento = tratamiento;
+    }
+
+    private String tratamiento;
+
     public String getId() {
         return id;
     }

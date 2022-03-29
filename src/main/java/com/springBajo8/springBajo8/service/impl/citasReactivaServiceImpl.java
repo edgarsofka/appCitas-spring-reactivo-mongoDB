@@ -32,7 +32,30 @@ public class citasReactivaServiceImpl implements IcitasReactivaService {
 
     }
 
+    @Override
+    public Mono<citasDTOReactiva> findMedico(String id) {
+        return this.IcitasReactivaRepository
+                .findById(id)
+                .flatMap(p -> {
+                    citasDTOReactiva medico = new citasDTOReactiva();
+                    medico.setPadecimiento(p.getNombreMedico());
+                    medico.setApellidosMedico(p.getApellidosMedico());
+                    return Mono.just(medico);
+                });
+    }
 
+    @Override
+    public Flux<citasDTOReactiva> findPadecimiento(String idPaciente) {
+        return this.IcitasReactivaRepository
+                .findByIdPaciente(idPaciente)
+                .flatMap(p -> {
+                    citasDTOReactiva paciente = new citasDTOReactiva();
+                    paciente.setIdPaciente(p.getIdPaciente());
+                    paciente.setPadecimiento(p.getPadecimiento());
+                    paciente.setTratamiento(p.getTratamiento());
+                    return Flux.just(paciente);
+                });
+    }
 
     @Override
     public Mono<citasDTOReactiva> update(String id, citasDTOReactiva citasDTOReactiva) {
