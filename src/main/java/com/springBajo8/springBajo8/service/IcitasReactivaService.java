@@ -20,5 +20,10 @@ public interface IcitasReactivaService {
 
     Mono<citasDTOReactiva> findById(String id);
 
-    Flux<citasDTOReactiva> findByFechaYHora(LocalDate fecha, String hora);
+    Flux<citasDTOReactiva> findByFecha(String fecha);
+
+    Flux<citasDTOReactiva> findByHora(String hora);
+
+
+
 }

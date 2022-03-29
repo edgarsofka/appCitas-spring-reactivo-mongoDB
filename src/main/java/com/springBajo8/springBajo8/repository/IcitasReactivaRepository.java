@@ -9,5 +9,6 @@ import java.time.LocalDate;
 
 public interface IcitasReactivaRepository extends ReactiveMongoRepository<citasDTOReactiva, String> {
     Flux<citasDTOReactiva> findByIdPaciente(String idPaciente);
-    Flux<citasDTOReactiva> findByFechaYHora(LocalDate fecha, String hora);
+    Flux<citasDTOReactiva> findByFechaReservaCita(String fecha);
+    Flux<citasDTOReactiva> findByHoraReservaCita(String hora);
 }
