@@ -22,12 +22,39 @@ public class citasReactivaServiceImpl implements IcitasReactivaService {
         return this.IcitasReactivaRepository.save(citasDTOReactiva);
     }
 
+    
+
     @Override
     public Mono<citasDTOReactiva> delete(String id) {
         return this.IcitasReactivaRepository
                 .findById(id)
                 .flatMap(p -> this.IcitasReactivaRepository.deleteById(p.getId()).thenReturn(p));
 
+    }
+
+    @Override
+    public Mono<citasDTOReactiva> findMedico(String id) {
+        return this.IcitasReactivaRepository
+                .findById(id)
+                .flatMap(p -> {
+                    citasDTOReactiva medico = new citasDTOReactiva();
+                    medico.setNombreMedico(p.getNombreMedico());
+                    medico.setApellidosMedico(p.getApellidosMedico());
+                    return Mono.just(medico);
+                });
+    }
+
+    @Override
+    public Flux<citasDTOReactiva> findPadecimiento(String idPaciente) {
+        return this.IcitasReactivaRepository
+                .findByIdPaciente(idPaciente)
+                .flatMap(p -> {
+                    citasDTOReactiva paciente = new citasDTOReactiva();
+                    paciente.setIdPaciente(p.getIdPaciente());
+                    paciente.setPadecimiento(p.getPadecimiento());
+                    paciente.setTratamiento(p.getTratamiento());
+                    return Flux.just(paciente);
+                });
     }
 
     @Override
@@ -55,4 +82,17 @@ public class citasReactivaServiceImpl implements IcitasReactivaService {
     public Mono<citasDTOReactiva> findById(String id) {
         return this.IcitasReactivaRepository.findById(id);
     }
+
+    @Override
+    public Flux<citasDTOReactiva> findByFecha(String fecha) {
+        return this.IcitasReactivaRepository.findByFechaReservaCita(fecha);
+    }
+
+    @Override
+    public Flux<citasDTOReactiva> findByHora(String hora) {
+        return this.IcitasReactivaRepository.findByHoraReservaCita(hora);
+    }
+
+
+
 }

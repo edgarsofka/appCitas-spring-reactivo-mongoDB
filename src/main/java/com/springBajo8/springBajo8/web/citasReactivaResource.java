@@ -43,9 +43,38 @@ public class citasReactivaResource {
         return this.icitasReactivaService.findByIdPaciente(idPaciente);
     }
 
+
+    @GetMapping("/citasReactivas/{id}/byMedico")
+    private Mono<citasDTOReactiva> findMedico(@PathVariable("id") String id){
+        return  this.icitasReactivaService.findMedico(id);
+    }
+
+    @GetMapping("/citasReactivas/{idPaciente}/byPadecimiento")
+    private Flux<citasDTOReactiva> findPadecimiento(@PathVariable("idPaciente") String idPaciente){
+        return  this.icitasReactivaService.findPadecimiento(idPaciente);
+    }
+
     @GetMapping(value = "/citasReactivas")
     private Flux<citasDTOReactiva> findAll() {
         return this.icitasReactivaService.findAll();
     }
 
+    @GetMapping("/citasReactivas/{fecha}/byfecha")
+    private Flux<citasDTOReactiva> findByFecha(@PathVariable(value = "fecha") String fecha){
+        return this.icitasReactivaService.findByFecha(fecha);
+    }
+
+    @GetMapping("/citasReactivas/{hora}/byhora")
+    private Flux<citasDTOReactiva> findByhora(@PathVariable(value = "hora") String hora){
+        return this.icitasReactivaService.findByHora(hora);
+    }
+
+    @PutMapping("/citasReactivas/cancelar/{id}")
+    private Mono<ResponseEntity<citasDTOReactiva>> cancelar(@PathVariable("id") String id) {
+        return this.icitasReactivaService.findById(id).flatMap(citasDTOReactiva -> {
+            citasDTOReactiva.setEstado(false);
+            citasDTOReactiva.setEstadoReservaCita("Cancelada");
+            return this.icitasReactivaService.save(citasDTOReactiva);
+        }).flatMap(citasDTOReactiva -> Mono.just(ResponseEntity.ok(citasDTOReactiva))).switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
 }

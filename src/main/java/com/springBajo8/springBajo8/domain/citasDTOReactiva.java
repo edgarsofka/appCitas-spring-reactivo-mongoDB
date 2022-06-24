@@ -23,11 +23,37 @@ public class citasDTOReactiva {
 
     private String apellidosMedico;
 
-    private LocalDate fechaReservaCita;
+    private String fechaReservaCita;
 
     private String horaReservaCita;
 
     private String estadoReservaCita;
+
+    private boolean estado;
+
+    private String padecimiento;
+
+    public String getPadecimiento() {
+        return padecimiento;
+    }
+
+    public void setPadecimiento(String padecimiento) {
+        this.padecimiento = padecimiento;
+    }
+
+    public String getTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(String tratamiento) {
+        this.tratamiento = tratamiento;
+    }
+
+    private String tratamiento;
+
+    private String padecimientos;
+
+    private String Tratamientos;
 
     public String getId() {
         return id;
@@ -77,11 +103,11 @@ public class citasDTOReactiva {
         this.apellidosMedico = apellidosMedico;
     }
 
-    public LocalDate getFechaReservaCita() {
+    public String getFechaReservaCita() {
         return fechaReservaCita;
     }
 
-    public void setFechaReservaCita(LocalDate fechaReservaCita) {
+    public void setFechaReservaCita(String fechaReservaCita) {
         this.fechaReservaCita = fechaReservaCita;
     }
 
@@ -101,7 +127,32 @@ public class citasDTOReactiva {
         this.estadoReservaCita = estadoReservaCita;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getPadecimientos() {
+        return padecimientos;
+    }
+
+    public void setPadecimientos(String padecimientos) {
+        this.padecimientos = padecimientos;
+    }
+
+    public String getTratamientos() {
+        return Tratamientos;
+    }
+
+    public void setTratamientos(String tratamientos) {
+        Tratamientos = tratamientos;
+    }
+
     //private Date sendedDate = new Date();
 
+    //comentario prueba
 
 }
